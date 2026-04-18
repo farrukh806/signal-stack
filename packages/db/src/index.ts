@@ -1,5 +1,15 @@
+import { config as dotenvConfig } from "dotenv";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "./generated/prisma/client.js";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenvConfig({
+  path: path.resolve(__dirname, "../../../.env")
+});
 
 declare global {
   // eslint-disable-next-line no-var

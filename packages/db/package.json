@@ -18,17 +18,18 @@
     "db:push": "prisma db push",
     "build": "prisma generate && tsc -p tsconfig.json",
     "lint": "eslint --max-warnings 0",
-    "check-types": "tsc -p tsconfig.json --noEmit"
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.7.0",
     "@prisma/client": "^7.7.0",
+    "dotenv": "^17.2.2",
     "pg": "^8.16.3"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "dotenv": "^17.2.2",
     "eslint": "^9.39.1",
     "prisma": "^7.7.0",
     "typescript": "5.9.2"
