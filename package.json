@@ -1,5 +1,5 @@
 {
-  "name": "analytics",
+  "name": "signal-stack",
   "private": true,
   "scripts": {
     "build": "turbo run build",
