@@ -60,6 +60,8 @@ model Project {
   events    Event[]
   users     User[]
   pageViews PageView[]
+  accountId String
+  account   Account  @relation(fields: [accountId], references: [id])
 }
 
 model PageView {
@@ -87,4 +89,27 @@ model Device {
   sessionId String @unique
 
   session Session @relation(fields: [sessionId], references: [id])
+}
+
+model Account {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  projects  Project[]
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  accountId String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  account Account @relation(fields: [accountId], references: [id])
+
+  @@index([accountId])
 }

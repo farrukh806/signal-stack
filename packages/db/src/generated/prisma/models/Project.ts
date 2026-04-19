@@ -30,6 +30,7 @@ export type ProjectMinAggregateOutputType = {
   apiKey: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  accountId: string | null
 }
 
 export type ProjectMaxAggregateOutputType = {
@@ -38,6 +39,7 @@ export type ProjectMaxAggregateOutputType = {
   apiKey: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  accountId: string | null
 }
 
 export type ProjectCountAggregateOutputType = {
@@ -46,6 +48,7 @@ export type ProjectCountAggregateOutputType = {
   apiKey: number
   createdAt: number
   updatedAt: number
+  accountId: number
   _all: number
 }
 
@@ -56,6 +59,7 @@ export type ProjectMinAggregateInputType = {
   apiKey?: true
   createdAt?: true
   updatedAt?: true
+  accountId?: true
 }
 
 export type ProjectMaxAggregateInputType = {
@@ -64,6 +68,7 @@ export type ProjectMaxAggregateInputType = {
   apiKey?: true
   createdAt?: true
   updatedAt?: true
+  accountId?: true
 }
 
 export type ProjectCountAggregateInputType = {
@@ -72,6 +77,7 @@ export type ProjectCountAggregateInputType = {
   apiKey?: true
   createdAt?: true
   updatedAt?: true
+  accountId?: true
   _all?: true
 }
 
@@ -153,6 +159,7 @@ export type ProjectGroupByOutputType = {
   apiKey: string
   createdAt: Date
   updatedAt: Date
+  accountId: string
   _count: ProjectCountAggregateOutputType | null
   _min: ProjectMinAggregateOutputType | null
   _max: ProjectMaxAggregateOutputType | null
@@ -182,10 +189,12 @@ export type ProjectWhereInput = {
   apiKey?: Prisma.StringFilter<"Project"> | string
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  accountId?: Prisma.StringFilter<"Project"> | string
   sessions?: Prisma.SessionListRelationFilter
   events?: Prisma.EventListRelationFilter
   users?: Prisma.UserListRelationFilter
   pageViews?: Prisma.PageViewListRelationFilter
+  account?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -194,10 +203,12 @@ export type ProjectOrderByWithRelationInput = {
   apiKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accountId?: Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   events?: Prisma.EventOrderByRelationAggregateInput
   users?: Prisma.UserOrderByRelationAggregateInput
   pageViews?: Prisma.PageViewOrderByRelationAggregateInput
+  account?: Prisma.AccountOrderByWithRelationInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -209,10 +220,12 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Project"> | string
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  accountId?: Prisma.StringFilter<"Project"> | string
   sessions?: Prisma.SessionListRelationFilter
   events?: Prisma.EventListRelationFilter
   users?: Prisma.UserListRelationFilter
   pageViews?: Prisma.PageViewListRelationFilter
+  account?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
 }, "id" | "apiKey">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -221,6 +234,7 @@ export type ProjectOrderByWithAggregationInput = {
   apiKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accountId?: Prisma.SortOrder
   _count?: Prisma.ProjectCountOrderByAggregateInput
   _max?: Prisma.ProjectMaxOrderByAggregateInput
   _min?: Prisma.ProjectMinOrderByAggregateInput
@@ -235,6 +249,7 @@ export type ProjectScalarWhereWithAggregatesInput = {
   apiKey?: Prisma.StringWithAggregatesFilter<"Project"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
+  accountId?: Prisma.StringWithAggregatesFilter<"Project"> | string
 }
 
 export type ProjectCreateInput = {
@@ -247,6 +262,7 @@ export type ProjectCreateInput = {
   events?: Prisma.EventCreateNestedManyWithoutProjectInput
   users?: Prisma.UserCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewCreateNestedManyWithoutProjectInput
+  account: Prisma.AccountCreateNestedOneWithoutProjectsInput
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -255,6 +271,7 @@ export type ProjectUncheckedCreateInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountId: string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutProjectInput
@@ -271,6 +288,7 @@ export type ProjectUpdateInput = {
   events?: Prisma.EventUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUpdateManyWithoutProjectNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutProjectsNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -279,6 +297,7 @@ export type ProjectUncheckedUpdateInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountId?: Prisma.StringFieldUpdateOperationsInput | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutProjectNestedInput
@@ -291,6 +310,7 @@ export type ProjectCreateManyInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountId: string
 }
 
 export type ProjectUpdateManyMutationInput = {
@@ -307,6 +327,7 @@ export type ProjectUncheckedUpdateManyInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProjectScalarRelationFilter = {
@@ -320,6 +341,7 @@ export type ProjectCountOrderByAggregateInput = {
   apiKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accountId?: Prisma.SortOrder
 }
 
 export type ProjectMaxOrderByAggregateInput = {
@@ -328,6 +350,7 @@ export type ProjectMaxOrderByAggregateInput = {
   apiKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accountId?: Prisma.SortOrder
 }
 
 export type ProjectMinOrderByAggregateInput = {
@@ -336,6 +359,17 @@ export type ProjectMinOrderByAggregateInput = {
   apiKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accountId?: Prisma.SortOrder
+}
+
+export type ProjectListRelationFilter = {
+  every?: Prisma.ProjectWhereInput
+  some?: Prisma.ProjectWhereInput
+  none?: Prisma.ProjectWhereInput
+}
+
+export type ProjectOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type ProjectCreateNestedOneWithoutUsersInput = {
@@ -394,6 +428,48 @@ export type ProjectUpdateOneRequiredWithoutPageViewsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutPageViewsInput, Prisma.ProjectUpdateWithoutPageViewsInput>, Prisma.ProjectUncheckedUpdateWithoutPageViewsInput>
 }
 
+export type ProjectCreateNestedManyWithoutAccountInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutAccountInput, Prisma.ProjectUncheckedCreateWithoutAccountInput> | Prisma.ProjectCreateWithoutAccountInput[] | Prisma.ProjectUncheckedCreateWithoutAccountInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutAccountInput | Prisma.ProjectCreateOrConnectWithoutAccountInput[]
+  createMany?: Prisma.ProjectCreateManyAccountInputEnvelope
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+}
+
+export type ProjectUncheckedCreateNestedManyWithoutAccountInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutAccountInput, Prisma.ProjectUncheckedCreateWithoutAccountInput> | Prisma.ProjectCreateWithoutAccountInput[] | Prisma.ProjectUncheckedCreateWithoutAccountInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutAccountInput | Prisma.ProjectCreateOrConnectWithoutAccountInput[]
+  createMany?: Prisma.ProjectCreateManyAccountInputEnvelope
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+}
+
+export type ProjectUpdateManyWithoutAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutAccountInput, Prisma.ProjectUncheckedCreateWithoutAccountInput> | Prisma.ProjectCreateWithoutAccountInput[] | Prisma.ProjectUncheckedCreateWithoutAccountInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutAccountInput | Prisma.ProjectCreateOrConnectWithoutAccountInput[]
+  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutAccountInput | Prisma.ProjectUpsertWithWhereUniqueWithoutAccountInput[]
+  createMany?: Prisma.ProjectCreateManyAccountInputEnvelope
+  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutAccountInput | Prisma.ProjectUpdateWithWhereUniqueWithoutAccountInput[]
+  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutAccountInput | Prisma.ProjectUpdateManyWithWhereWithoutAccountInput[]
+  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+}
+
+export type ProjectUncheckedUpdateManyWithoutAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutAccountInput, Prisma.ProjectUncheckedCreateWithoutAccountInput> | Prisma.ProjectCreateWithoutAccountInput[] | Prisma.ProjectUncheckedCreateWithoutAccountInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutAccountInput | Prisma.ProjectCreateOrConnectWithoutAccountInput[]
+  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutAccountInput | Prisma.ProjectUpsertWithWhereUniqueWithoutAccountInput[]
+  createMany?: Prisma.ProjectCreateManyAccountInputEnvelope
+  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutAccountInput | Prisma.ProjectUpdateWithWhereUniqueWithoutAccountInput[]
+  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutAccountInput | Prisma.ProjectUpdateManyWithWhereWithoutAccountInput[]
+  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+}
+
 export type ProjectCreateWithoutUsersInput = {
   id?: string
   name: string
@@ -403,6 +479,7 @@ export type ProjectCreateWithoutUsersInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutProjectInput
   events?: Prisma.EventCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewCreateNestedManyWithoutProjectInput
+  account: Prisma.AccountCreateNestedOneWithoutProjectsInput
 }
 
 export type ProjectUncheckedCreateWithoutUsersInput = {
@@ -411,6 +488,7 @@ export type ProjectUncheckedCreateWithoutUsersInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountId: string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewUncheckedCreateNestedManyWithoutProjectInput
@@ -441,6 +519,7 @@ export type ProjectUpdateWithoutUsersInput = {
   sessions?: Prisma.SessionUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUpdateManyWithoutProjectNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutProjectsNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutUsersInput = {
@@ -449,6 +528,7 @@ export type ProjectUncheckedUpdateWithoutUsersInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountId?: Prisma.StringFieldUpdateOperationsInput | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUncheckedUpdateManyWithoutProjectNestedInput
@@ -463,6 +543,7 @@ export type ProjectCreateWithoutSessionsInput = {
   events?: Prisma.EventCreateNestedManyWithoutProjectInput
   users?: Prisma.UserCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewCreateNestedManyWithoutProjectInput
+  account: Prisma.AccountCreateNestedOneWithoutProjectsInput
 }
 
 export type ProjectUncheckedCreateWithoutSessionsInput = {
@@ -471,6 +552,7 @@ export type ProjectUncheckedCreateWithoutSessionsInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountId: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewUncheckedCreateNestedManyWithoutProjectInput
@@ -501,6 +583,7 @@ export type ProjectUpdateWithoutSessionsInput = {
   events?: Prisma.EventUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUpdateManyWithoutProjectNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutProjectsNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutSessionsInput = {
@@ -509,6 +592,7 @@ export type ProjectUncheckedUpdateWithoutSessionsInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountId?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUncheckedUpdateManyWithoutProjectNestedInput
@@ -523,6 +607,7 @@ export type ProjectCreateWithoutEventsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutProjectInput
   users?: Prisma.UserCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewCreateNestedManyWithoutProjectInput
+  account: Prisma.AccountCreateNestedOneWithoutProjectsInput
 }
 
 export type ProjectUncheckedCreateWithoutEventsInput = {
@@ -531,6 +616,7 @@ export type ProjectUncheckedCreateWithoutEventsInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountId: string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewUncheckedCreateNestedManyWithoutProjectInput
@@ -561,6 +647,7 @@ export type ProjectUpdateWithoutEventsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUpdateManyWithoutProjectNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutProjectsNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutEventsInput = {
@@ -569,6 +656,7 @@ export type ProjectUncheckedUpdateWithoutEventsInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountId?: Prisma.StringFieldUpdateOperationsInput | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUncheckedUpdateManyWithoutProjectNestedInput
@@ -583,6 +671,7 @@ export type ProjectCreateWithoutPageViewsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutProjectInput
   events?: Prisma.EventCreateNestedManyWithoutProjectInput
   users?: Prisma.UserCreateNestedManyWithoutProjectInput
+  account: Prisma.AccountCreateNestedOneWithoutProjectsInput
 }
 
 export type ProjectUncheckedCreateWithoutPageViewsInput = {
@@ -591,6 +680,7 @@ export type ProjectUncheckedCreateWithoutPageViewsInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountId: string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutProjectInput
@@ -621,6 +711,7 @@ export type ProjectUpdateWithoutPageViewsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUpdateManyWithoutProjectNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutProjectsNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutPageViewsInput = {
@@ -629,9 +720,112 @@ export type ProjectUncheckedUpdateWithoutPageViewsInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountId?: Prisma.StringFieldUpdateOperationsInput | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutAccountInput = {
+  id?: string
+  name: string
+  apiKey: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutProjectInput
+  events?: Prisma.EventCreateNestedManyWithoutProjectInput
+  users?: Prisma.UserCreateNestedManyWithoutProjectInput
+  pageViews?: Prisma.PageViewCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutAccountInput = {
+  id?: string
+  name: string
+  apiKey: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutProjectInput
+  pageViews?: Prisma.PageViewUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutAccountInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutAccountInput, Prisma.ProjectUncheckedCreateWithoutAccountInput>
+}
+
+export type ProjectCreateManyAccountInputEnvelope = {
+  data: Prisma.ProjectCreateManyAccountInput | Prisma.ProjectCreateManyAccountInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProjectUpsertWithWhereUniqueWithoutAccountInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutAccountInput, Prisma.ProjectUncheckedUpdateWithoutAccountInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutAccountInput, Prisma.ProjectUncheckedCreateWithoutAccountInput>
+}
+
+export type ProjectUpdateWithWhereUniqueWithoutAccountInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutAccountInput, Prisma.ProjectUncheckedUpdateWithoutAccountInput>
+}
+
+export type ProjectUpdateManyWithWhereWithoutAccountInput = {
+  where: Prisma.ProjectScalarWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateManyMutationInput, Prisma.ProjectUncheckedUpdateManyWithoutAccountInput>
+}
+
+export type ProjectScalarWhereInput = {
+  AND?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+  OR?: Prisma.ProjectScalarWhereInput[]
+  NOT?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+  id?: Prisma.StringFilter<"Project"> | string
+  name?: Prisma.StringFilter<"Project"> | string
+  apiKey?: Prisma.StringFilter<"Project"> | string
+  createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  accountId?: Prisma.StringFilter<"Project"> | string
+}
+
+export type ProjectCreateManyAccountInput = {
+  id?: string
+  name: string
+  apiKey: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProjectUpdateWithoutAccountInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  apiKey?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutProjectNestedInput
+  events?: Prisma.EventUpdateManyWithoutProjectNestedInput
+  users?: Prisma.UserUpdateManyWithoutProjectNestedInput
+  pageViews?: Prisma.PageViewUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutAccountInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  apiKey?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutProjectNestedInput
+  pageViews?: Prisma.PageViewUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateManyWithoutAccountInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  apiKey?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -698,10 +892,12 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   apiKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accountId?: boolean
   sessions?: boolean | Prisma.Project$sessionsArgs<ExtArgs>
   events?: boolean | Prisma.Project$eventsArgs<ExtArgs>
   users?: boolean | Prisma.Project$usersArgs<ExtArgs>
   pageViews?: boolean | Prisma.Project$pageViewsArgs<ExtArgs>
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -711,6 +907,8 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   apiKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accountId?: boolean
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -719,6 +917,8 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   apiKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accountId?: boolean
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectScalar = {
@@ -727,18 +927,24 @@ export type ProjectSelectScalar = {
   apiKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accountId?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "apiKey" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "apiKey" | "createdAt" | "updatedAt" | "accountId", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.Project$sessionsArgs<ExtArgs>
   events?: boolean | Prisma.Project$eventsArgs<ExtArgs>
   users?: boolean | Prisma.Project$usersArgs<ExtArgs>
   pageViews?: boolean | Prisma.Project$pageViewsArgs<ExtArgs>
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+}
+export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+}
 
 export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Project"
@@ -747,6 +953,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     events: Prisma.$EventPayload<ExtArgs>[]
     users: Prisma.$UserPayload<ExtArgs>[]
     pageViews: Prisma.$PageViewPayload<ExtArgs>[]
+    account: Prisma.$AccountPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -754,6 +961,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     apiKey: string
     createdAt: Date
     updatedAt: Date
+    accountId: string
   }, ExtArgs["result"]["project"]>
   composites: {}
 }
@@ -1152,6 +1360,7 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
   events<T extends Prisma.Project$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   users<T extends Prisma.Project$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pageViews<T extends Prisma.Project$pageViewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$pageViewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PageViewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  account<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1186,6 +1395,7 @@ export interface ProjectFieldRefs {
   readonly apiKey: Prisma.FieldRef<"Project", 'String'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Project", 'DateTime'>
+  readonly accountId: Prisma.FieldRef<"Project", 'String'>
 }
     
 
@@ -1440,6 +1650,10 @@ export type ProjectCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    */
   data: Prisma.ProjectCreateManyInput | Prisma.ProjectCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1510,6 +1724,10 @@ export type ProjectUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * Limit how many Projects to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

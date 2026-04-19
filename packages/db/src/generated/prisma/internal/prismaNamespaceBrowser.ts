@@ -56,7 +56,9 @@ export const ModelName = {
   Event: 'Event',
   Project: 'Project',
   PageView: 'PageView',
-  Device: 'Device'
+  Device: 'Device',
+  Account: 'Account',
+  RefreshToken: 'RefreshToken'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -88,8 +90,8 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 
 export const SessionScalarFieldEnum = {
   id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
   projectId: 'projectId',
   userId: 'userId'
 } as const
@@ -116,7 +118,8 @@ export const ProjectScalarFieldEnum = {
   name: 'name',
   apiKey: 'apiKey',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  accountId: 'accountId'
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
@@ -124,8 +127,8 @@ export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeo
 
 export const PageViewScalarFieldEnum = {
   id: 'id',
+  path: 'path',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   projectId: 'projectId',
   sessionId: 'sessionId'
 } as const
@@ -139,11 +142,33 @@ export const DeviceScalarFieldEnum = {
   updatedAt: 'updatedAt',
   browser: 'browser',
   os: 'os',
-  device: 'device',
+  deviceType: 'deviceType',
   sessionId: 'sessionId'
 } as const
 
 export type DeviceScalarFieldEnum = (typeof DeviceScalarFieldEnum)[keyof typeof DeviceScalarFieldEnum]
+
+
+export const AccountScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+export const RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  accountId: 'accountId',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
 
 
 export const SortOrder = {

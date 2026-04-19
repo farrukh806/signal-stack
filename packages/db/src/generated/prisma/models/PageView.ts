@@ -26,24 +26,24 @@ export type AggregatePageView = {
 
 export type PageViewMinAggregateOutputType = {
   id: string | null
+  path: string | null
   createdAt: Date | null
-  updatedAt: Date | null
   projectId: string | null
   sessionId: string | null
 }
 
 export type PageViewMaxAggregateOutputType = {
   id: string | null
+  path: string | null
   createdAt: Date | null
-  updatedAt: Date | null
   projectId: string | null
   sessionId: string | null
 }
 
 export type PageViewCountAggregateOutputType = {
   id: number
+  path: number
   createdAt: number
-  updatedAt: number
   projectId: number
   sessionId: number
   _all: number
@@ -52,24 +52,24 @@ export type PageViewCountAggregateOutputType = {
 
 export type PageViewMinAggregateInputType = {
   id?: true
+  path?: true
   createdAt?: true
-  updatedAt?: true
   projectId?: true
   sessionId?: true
 }
 
 export type PageViewMaxAggregateInputType = {
   id?: true
+  path?: true
   createdAt?: true
-  updatedAt?: true
   projectId?: true
   sessionId?: true
 }
 
 export type PageViewCountAggregateInputType = {
   id?: true
+  path?: true
   createdAt?: true
-  updatedAt?: true
   projectId?: true
   sessionId?: true
   _all?: true
@@ -149,10 +149,10 @@ export type PageViewGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type PageViewGroupByOutputType = {
   id: string
+  path: string
   createdAt: Date
-  updatedAt: Date
   projectId: string
-  sessionId: string
+  sessionId: string | null
   _count: PageViewCountAggregateOutputType | null
   _min: PageViewMinAggregateOutputType | null
   _max: PageViewMaxAggregateOutputType | null
@@ -178,20 +178,20 @@ export type PageViewWhereInput = {
   OR?: Prisma.PageViewWhereInput[]
   NOT?: Prisma.PageViewWhereInput | Prisma.PageViewWhereInput[]
   id?: Prisma.StringFilter<"PageView"> | string
+  path?: Prisma.StringFilter<"PageView"> | string
   createdAt?: Prisma.DateTimeFilter<"PageView"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PageView"> | Date | string
   projectId?: Prisma.StringFilter<"PageView"> | string
-  sessionId?: Prisma.StringFilter<"PageView"> | string
+  sessionId?: Prisma.StringNullableFilter<"PageView"> | string | null
   project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   session?: Prisma.XOR<Prisma.SessionNullableScalarRelationFilter, Prisma.SessionWhereInput> | null
 }
 
 export type PageViewOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  path?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   project?: Prisma.ProjectOrderByWithRelationInput
   session?: Prisma.SessionOrderByWithRelationInput
 }
@@ -201,20 +201,20 @@ export type PageViewWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PageViewWhereInput | Prisma.PageViewWhereInput[]
   OR?: Prisma.PageViewWhereInput[]
   NOT?: Prisma.PageViewWhereInput | Prisma.PageViewWhereInput[]
+  path?: Prisma.StringFilter<"PageView"> | string
   createdAt?: Prisma.DateTimeFilter<"PageView"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PageView"> | Date | string
   projectId?: Prisma.StringFilter<"PageView"> | string
-  sessionId?: Prisma.StringFilter<"PageView"> | string
+  sessionId?: Prisma.StringNullableFilter<"PageView"> | string | null
   project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   session?: Prisma.XOR<Prisma.SessionNullableScalarRelationFilter, Prisma.SessionWhereInput> | null
 }, "id">
 
 export type PageViewOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  path?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PageViewCountOrderByAggregateInput
   _max?: Prisma.PageViewMaxOrderByAggregateInput
   _min?: Prisma.PageViewMinOrderByAggregateInput
@@ -225,64 +225,64 @@ export type PageViewScalarWhereWithAggregatesInput = {
   OR?: Prisma.PageViewScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PageViewScalarWhereWithAggregatesInput | Prisma.PageViewScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"PageView"> | string
+  path?: Prisma.StringWithAggregatesFilter<"PageView"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PageView"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PageView"> | Date | string
   projectId?: Prisma.StringWithAggregatesFilter<"PageView"> | string
-  sessionId?: Prisma.StringWithAggregatesFilter<"PageView"> | string
+  sessionId?: Prisma.StringNullableWithAggregatesFilter<"PageView"> | string | null
 }
 
 export type PageViewCreateInput = {
   id?: string
+  path: string
   createdAt?: Date | string
-  updatedAt?: Date | string
   project: Prisma.ProjectCreateNestedOneWithoutPageViewsInput
   session?: Prisma.SessionCreateNestedOneWithoutPageViewsInput
 }
 
 export type PageViewUncheckedCreateInput = {
   id?: string
+  path: string
   createdAt?: Date | string
-  updatedAt?: Date | string
   projectId: string
-  sessionId: string
+  sessionId?: string | null
 }
 
 export type PageViewUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   project?: Prisma.ProjectUpdateOneRequiredWithoutPageViewsNestedInput
   session?: Prisma.SessionUpdateOneWithoutPageViewsNestedInput
 }
 
 export type PageViewUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PageViewCreateManyInput = {
   id?: string
+  path: string
   createdAt?: Date | string
-  updatedAt?: Date | string
   projectId: string
-  sessionId: string
+  sessionId?: string | null
 }
 
 export type PageViewUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PageViewUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PageViewListRelationFilter = {
@@ -297,24 +297,24 @@ export type PageViewOrderByRelationAggregateInput = {
 
 export type PageViewCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  path?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
 }
 
 export type PageViewMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  path?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
 }
 
 export type PageViewMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  path?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
 }
@@ -405,15 +405,15 @@ export type PageViewUncheckedUpdateManyWithoutProjectNestedInput = {
 
 export type PageViewCreateWithoutSessionInput = {
   id?: string
+  path: string
   createdAt?: Date | string
-  updatedAt?: Date | string
   project: Prisma.ProjectCreateNestedOneWithoutPageViewsInput
 }
 
 export type PageViewUncheckedCreateWithoutSessionInput = {
   id?: string
+  path: string
   createdAt?: Date | string
-  updatedAt?: Date | string
   projectId: string
 }
 
@@ -448,24 +448,24 @@ export type PageViewScalarWhereInput = {
   OR?: Prisma.PageViewScalarWhereInput[]
   NOT?: Prisma.PageViewScalarWhereInput | Prisma.PageViewScalarWhereInput[]
   id?: Prisma.StringFilter<"PageView"> | string
+  path?: Prisma.StringFilter<"PageView"> | string
   createdAt?: Prisma.DateTimeFilter<"PageView"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PageView"> | Date | string
   projectId?: Prisma.StringFilter<"PageView"> | string
-  sessionId?: Prisma.StringFilter<"PageView"> | string
+  sessionId?: Prisma.StringNullableFilter<"PageView"> | string | null
 }
 
 export type PageViewCreateWithoutProjectInput = {
   id?: string
+  path: string
   createdAt?: Date | string
-  updatedAt?: Date | string
   session?: Prisma.SessionCreateNestedOneWithoutPageViewsInput
 }
 
 export type PageViewUncheckedCreateWithoutProjectInput = {
   id?: string
+  path: string
   createdAt?: Date | string
-  updatedAt?: Date | string
-  sessionId: string
+  sessionId?: string | null
 }
 
 export type PageViewCreateOrConnectWithoutProjectInput = {
@@ -496,66 +496,66 @@ export type PageViewUpdateManyWithWhereWithoutProjectInput = {
 
 export type PageViewCreateManySessionInput = {
   id?: string
+  path: string
   createdAt?: Date | string
-  updatedAt?: Date | string
   projectId: string
 }
 
 export type PageViewUpdateWithoutSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   project?: Prisma.ProjectUpdateOneRequiredWithoutPageViewsNestedInput
 }
 
 export type PageViewUncheckedUpdateWithoutSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PageViewUncheckedUpdateManyWithoutSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PageViewCreateManyProjectInput = {
   id?: string
+  path: string
   createdAt?: Date | string
-  updatedAt?: Date | string
-  sessionId: string
+  sessionId?: string | null
 }
 
 export type PageViewUpdateWithoutProjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   session?: Prisma.SessionUpdateOneWithoutPageViewsNestedInput
 }
 
 export type PageViewUncheckedUpdateWithoutProjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PageViewUncheckedUpdateManyWithoutProjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
 
 export type PageViewSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  path?: boolean
   createdAt?: boolean
-  updatedAt?: boolean
   projectId?: boolean
   sessionId?: boolean
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
@@ -564,8 +564,8 @@ export type PageViewSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type PageViewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  path?: boolean
   createdAt?: boolean
-  updatedAt?: boolean
   projectId?: boolean
   sessionId?: boolean
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
@@ -574,8 +574,8 @@ export type PageViewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type PageViewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  path?: boolean
   createdAt?: boolean
-  updatedAt?: boolean
   projectId?: boolean
   sessionId?: boolean
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
@@ -584,13 +584,13 @@ export type PageViewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type PageViewSelectScalar = {
   id?: boolean
+  path?: boolean
   createdAt?: boolean
-  updatedAt?: boolean
   projectId?: boolean
   sessionId?: boolean
 }
 
-export type PageViewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "projectId" | "sessionId", ExtArgs["result"]["pageView"]>
+export type PageViewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "path" | "createdAt" | "projectId" | "sessionId", ExtArgs["result"]["pageView"]>
 export type PageViewInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
   session?: boolean | Prisma.PageView$sessionArgs<ExtArgs>
@@ -612,10 +612,10 @@ export type $PageViewPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    path: string
     createdAt: Date
-    updatedAt: Date
     projectId: string
-    sessionId: string
+    sessionId: string | null
   }, ExtArgs["result"]["pageView"]>
   composites: {}
 }
@@ -1042,8 +1042,8 @@ export interface Prisma__PageViewClient<T, Null = never, ExtArgs extends runtime
  */
 export interface PageViewFieldRefs {
   readonly id: Prisma.FieldRef<"PageView", 'String'>
+  readonly path: Prisma.FieldRef<"PageView", 'String'>
   readonly createdAt: Prisma.FieldRef<"PageView", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"PageView", 'DateTime'>
   readonly projectId: Prisma.FieldRef<"PageView", 'String'>
   readonly sessionId: Prisma.FieldRef<"PageView", 'String'>
 }

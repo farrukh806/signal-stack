@@ -47,3 +47,13 @@ export type PageView = Prisma.PageViewModel
  * 
  */
 export type Device = Prisma.DeviceModel
+/**
+ * Model Account
+ * 
+ */
+export type Account = Prisma.AccountModel
+/**
+ * Model RefreshToken
+ * 
+ */
+export type RefreshToken = Prisma.RefreshTokenModel

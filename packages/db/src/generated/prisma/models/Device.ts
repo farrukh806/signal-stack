@@ -30,7 +30,7 @@ export type DeviceMinAggregateOutputType = {
   updatedAt: Date | null
   browser: string | null
   os: string | null
-  device: string | null
+  deviceType: string | null
   sessionId: string | null
 }
 
@@ -40,7 +40,7 @@ export type DeviceMaxAggregateOutputType = {
   updatedAt: Date | null
   browser: string | null
   os: string | null
-  device: string | null
+  deviceType: string | null
   sessionId: string | null
 }
 
@@ -50,7 +50,7 @@ export type DeviceCountAggregateOutputType = {
   updatedAt: number
   browser: number
   os: number
-  device: number
+  deviceType: number
   sessionId: number
   _all: number
 }
@@ -62,7 +62,7 @@ export type DeviceMinAggregateInputType = {
   updatedAt?: true
   browser?: true
   os?: true
-  device?: true
+  deviceType?: true
   sessionId?: true
 }
 
@@ -72,7 +72,7 @@ export type DeviceMaxAggregateInputType = {
   updatedAt?: true
   browser?: true
   os?: true
-  device?: true
+  deviceType?: true
   sessionId?: true
 }
 
@@ -82,7 +82,7 @@ export type DeviceCountAggregateInputType = {
   updatedAt?: true
   browser?: true
   os?: true
-  device?: true
+  deviceType?: true
   sessionId?: true
   _all?: true
 }
@@ -165,7 +165,7 @@ export type DeviceGroupByOutputType = {
   updatedAt: Date
   browser: string | null
   os: string | null
-  device: string | null
+  deviceType: string | null
   sessionId: string
   _count: DeviceCountAggregateOutputType | null
   _min: DeviceMinAggregateOutputType | null
@@ -196,7 +196,7 @@ export type DeviceWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Device"> | Date | string
   browser?: Prisma.StringNullableFilter<"Device"> | string | null
   os?: Prisma.StringNullableFilter<"Device"> | string | null
-  device?: Prisma.StringNullableFilter<"Device"> | string | null
+  deviceType?: Prisma.StringNullableFilter<"Device"> | string | null
   sessionId?: Prisma.StringFilter<"Device"> | string
   session?: Prisma.XOR<Prisma.SessionScalarRelationFilter, Prisma.SessionWhereInput>
 }
@@ -207,7 +207,7 @@ export type DeviceOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   browser?: Prisma.SortOrderInput | Prisma.SortOrder
   os?: Prisma.SortOrderInput | Prisma.SortOrder
-  device?: Prisma.SortOrderInput | Prisma.SortOrder
+  deviceType?: Prisma.SortOrderInput | Prisma.SortOrder
   sessionId?: Prisma.SortOrder
   session?: Prisma.SessionOrderByWithRelationInput
 }
@@ -222,7 +222,7 @@ export type DeviceWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Device"> | Date | string
   browser?: Prisma.StringNullableFilter<"Device"> | string | null
   os?: Prisma.StringNullableFilter<"Device"> | string | null
-  device?: Prisma.StringNullableFilter<"Device"> | string | null
+  deviceType?: Prisma.StringNullableFilter<"Device"> | string | null
   session?: Prisma.XOR<Prisma.SessionScalarRelationFilter, Prisma.SessionWhereInput>
 }, "id" | "sessionId">
 
@@ -232,7 +232,7 @@ export type DeviceOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   browser?: Prisma.SortOrderInput | Prisma.SortOrder
   os?: Prisma.SortOrderInput | Prisma.SortOrder
-  device?: Prisma.SortOrderInput | Prisma.SortOrder
+  deviceType?: Prisma.SortOrderInput | Prisma.SortOrder
   sessionId?: Prisma.SortOrder
   _count?: Prisma.DeviceCountOrderByAggregateInput
   _max?: Prisma.DeviceMaxOrderByAggregateInput
@@ -248,7 +248,7 @@ export type DeviceScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Device"> | Date | string
   browser?: Prisma.StringNullableWithAggregatesFilter<"Device"> | string | null
   os?: Prisma.StringNullableWithAggregatesFilter<"Device"> | string | null
-  device?: Prisma.StringNullableWithAggregatesFilter<"Device"> | string | null
+  deviceType?: Prisma.StringNullableWithAggregatesFilter<"Device"> | string | null
   sessionId?: Prisma.StringWithAggregatesFilter<"Device"> | string
 }
 
@@ -258,7 +258,7 @@ export type DeviceCreateInput = {
   updatedAt?: Date | string
   browser?: string | null
   os?: string | null
-  device?: string | null
+  deviceType?: string | null
   session: Prisma.SessionCreateNestedOneWithoutDeviceInput
 }
 
@@ -268,7 +268,7 @@ export type DeviceUncheckedCreateInput = {
   updatedAt?: Date | string
   browser?: string | null
   os?: string | null
-  device?: string | null
+  deviceType?: string | null
   sessionId: string
 }
 
@@ -278,7 +278,7 @@ export type DeviceUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   browser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   os?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  device?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deviceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   session?: Prisma.SessionUpdateOneRequiredWithoutDeviceNestedInput
 }
 
@@ -288,7 +288,7 @@ export type DeviceUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   browser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   os?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  device?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deviceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -298,7 +298,7 @@ export type DeviceCreateManyInput = {
   updatedAt?: Date | string
   browser?: string | null
   os?: string | null
-  device?: string | null
+  deviceType?: string | null
   sessionId: string
 }
 
@@ -308,7 +308,7 @@ export type DeviceUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   browser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   os?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  device?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deviceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DeviceUncheckedUpdateManyInput = {
@@ -317,7 +317,7 @@ export type DeviceUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   browser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   os?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  device?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deviceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -332,7 +332,7 @@ export type DeviceCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   browser?: Prisma.SortOrder
   os?: Prisma.SortOrder
-  device?: Prisma.SortOrder
+  deviceType?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
 }
 
@@ -342,7 +342,7 @@ export type DeviceMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   browser?: Prisma.SortOrder
   os?: Prisma.SortOrder
-  device?: Prisma.SortOrder
+  deviceType?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
 }
 
@@ -352,7 +352,7 @@ export type DeviceMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   browser?: Prisma.SortOrder
   os?: Prisma.SortOrder
-  device?: Prisma.SortOrder
+  deviceType?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
 }
 
@@ -394,7 +394,7 @@ export type DeviceCreateWithoutSessionInput = {
   updatedAt?: Date | string
   browser?: string | null
   os?: string | null
-  device?: string | null
+  deviceType?: string | null
 }
 
 export type DeviceUncheckedCreateWithoutSessionInput = {
@@ -403,7 +403,7 @@ export type DeviceUncheckedCreateWithoutSessionInput = {
   updatedAt?: Date | string
   browser?: string | null
   os?: string | null
-  device?: string | null
+  deviceType?: string | null
 }
 
 export type DeviceCreateOrConnectWithoutSessionInput = {
@@ -428,7 +428,7 @@ export type DeviceUpdateWithoutSessionInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   browser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   os?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  device?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deviceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DeviceUncheckedUpdateWithoutSessionInput = {
@@ -437,7 +437,7 @@ export type DeviceUncheckedUpdateWithoutSessionInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   browser?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   os?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  device?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deviceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -448,7 +448,7 @@ export type DeviceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   updatedAt?: boolean
   browser?: boolean
   os?: boolean
-  device?: boolean
+  deviceType?: boolean
   sessionId?: boolean
   session?: boolean | Prisma.SessionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["device"]>
@@ -459,7 +459,7 @@ export type DeviceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   updatedAt?: boolean
   browser?: boolean
   os?: boolean
-  device?: boolean
+  deviceType?: boolean
   sessionId?: boolean
   session?: boolean | Prisma.SessionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["device"]>
@@ -470,7 +470,7 @@ export type DeviceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   updatedAt?: boolean
   browser?: boolean
   os?: boolean
-  device?: boolean
+  deviceType?: boolean
   sessionId?: boolean
   session?: boolean | Prisma.SessionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["device"]>
@@ -481,11 +481,11 @@ export type DeviceSelectScalar = {
   updatedAt?: boolean
   browser?: boolean
   os?: boolean
-  device?: boolean
+  deviceType?: boolean
   sessionId?: boolean
 }
 
-export type DeviceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "browser" | "os" | "device" | "sessionId", ExtArgs["result"]["device"]>
+export type DeviceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "browser" | "os" | "deviceType" | "sessionId", ExtArgs["result"]["device"]>
 export type DeviceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   session?: boolean | Prisma.SessionDefaultArgs<ExtArgs>
 }
@@ -507,7 +507,7 @@ export type $DevicePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     updatedAt: Date
     browser: string | null
     os: string | null
-    device: string | null
+    deviceType: string | null
     sessionId: string
   }, ExtArgs["result"]["device"]>
   composites: {}
@@ -938,7 +938,7 @@ export interface DeviceFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"Device", 'DateTime'>
   readonly browser: Prisma.FieldRef<"Device", 'String'>
   readonly os: Prisma.FieldRef<"Device", 'String'>
-  readonly device: Prisma.FieldRef<"Device", 'String'>
+  readonly deviceType: Prisma.FieldRef<"Device", 'String'>
   readonly sessionId: Prisma.FieldRef<"Device", 'String'>
 }
     

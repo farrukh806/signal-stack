@@ -168,8 +168,8 @@ export type EventGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   projectId: string
-  sessionId: string
-  userId: string
+  sessionId: string | null
+  userId: string | null
   _count: EventCountAggregateOutputType | null
   _min: EventMinAggregateOutputType | null
   _max: EventMaxAggregateOutputType | null
@@ -200,8 +200,8 @@ export type EventWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   projectId?: Prisma.StringFilter<"Event"> | string
-  sessionId?: Prisma.StringFilter<"Event"> | string
-  userId?: Prisma.StringFilter<"Event"> | string
+  sessionId?: Prisma.StringNullableFilter<"Event"> | string | null
+  userId?: Prisma.StringNullableFilter<"Event"> | string | null
   project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   session?: Prisma.XOR<Prisma.SessionNullableScalarRelationFilter, Prisma.SessionWhereInput> | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -214,8 +214,8 @@ export type EventOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   project?: Prisma.ProjectOrderByWithRelationInput
   session?: Prisma.SessionOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
@@ -231,8 +231,8 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   projectId?: Prisma.StringFilter<"Event"> | string
-  sessionId?: Prisma.StringFilter<"Event"> | string
-  userId?: Prisma.StringFilter<"Event"> | string
+  sessionId?: Prisma.StringNullableFilter<"Event"> | string | null
+  userId?: Prisma.StringNullableFilter<"Event"> | string | null
   project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   session?: Prisma.XOR<Prisma.SessionNullableScalarRelationFilter, Prisma.SessionWhereInput> | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -245,8 +245,8 @@ export type EventOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EventCountOrderByAggregateInput
   _max?: Prisma.EventMaxOrderByAggregateInput
   _min?: Prisma.EventMinOrderByAggregateInput
@@ -262,8 +262,8 @@ export type EventScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
   projectId?: Prisma.StringWithAggregatesFilter<"Event"> | string
-  sessionId?: Prisma.StringWithAggregatesFilter<"Event"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"Event"> | string
+  sessionId?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
+  userId?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
 }
 
 export type EventCreateInput = {
@@ -284,8 +284,8 @@ export type EventUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   projectId: string
-  sessionId: string
-  userId: string
+  sessionId?: string | null
+  userId?: string | null
 }
 
 export type EventUpdateInput = {
@@ -306,8 +306,8 @@ export type EventUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EventCreateManyInput = {
@@ -317,8 +317,8 @@ export type EventCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   projectId: string
-  sessionId: string
-  userId: string
+  sessionId?: string | null
+  userId?: string | null
 }
 
 export type EventUpdateManyMutationInput = {
@@ -336,8 +336,8 @@ export type EventUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EventListRelationFilter = {
@@ -524,7 +524,7 @@ export type EventUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   projectId: string
-  sessionId: string
+  sessionId?: string | null
 }
 
 export type EventCreateOrConnectWithoutUserInput = {
@@ -563,8 +563,8 @@ export type EventScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   projectId?: Prisma.StringFilter<"Event"> | string
-  sessionId?: Prisma.StringFilter<"Event"> | string
-  userId?: Prisma.StringFilter<"Event"> | string
+  sessionId?: Prisma.StringNullableFilter<"Event"> | string | null
+  userId?: Prisma.StringNullableFilter<"Event"> | string | null
 }
 
 export type EventCreateWithoutSessionInput = {
@@ -584,7 +584,7 @@ export type EventUncheckedCreateWithoutSessionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   projectId: string
-  userId: string
+  userId?: string | null
 }
 
 export type EventCreateOrConnectWithoutSessionInput = {
@@ -629,8 +629,8 @@ export type EventUncheckedCreateWithoutProjectInput = {
   properties?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessionId: string
-  userId: string
+  sessionId?: string | null
+  userId?: string | null
 }
 
 export type EventCreateOrConnectWithoutProjectInput = {
@@ -666,7 +666,7 @@ export type EventCreateManyUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   projectId: string
-  sessionId: string
+  sessionId?: string | null
 }
 
 export type EventUpdateWithoutUserInput = {
@@ -686,7 +686,7 @@ export type EventUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EventUncheckedUpdateManyWithoutUserInput = {
@@ -696,7 +696,7 @@ export type EventUncheckedUpdateManyWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EventCreateManySessionInput = {
@@ -706,7 +706,7 @@ export type EventCreateManySessionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   projectId: string
-  userId: string
+  userId?: string | null
 }
 
 export type EventUpdateWithoutSessionInput = {
@@ -726,7 +726,7 @@ export type EventUncheckedUpdateWithoutSessionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EventUncheckedUpdateManyWithoutSessionInput = {
@@ -736,7 +736,7 @@ export type EventUncheckedUpdateManyWithoutSessionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   projectId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EventCreateManyProjectInput = {
@@ -745,8 +745,8 @@ export type EventCreateManyProjectInput = {
   properties?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  sessionId: string
-  userId: string
+  sessionId?: string | null
+  userId?: string | null
 }
 
 export type EventUpdateWithoutProjectInput = {
@@ -765,8 +765,8 @@ export type EventUncheckedUpdateWithoutProjectInput = {
   properties?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type EventUncheckedUpdateManyWithoutProjectInput = {
@@ -775,8 +775,8 @@ export type EventUncheckedUpdateManyWithoutProjectInput = {
   properties?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -865,8 +865,8 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     createdAt: Date
     updatedAt: Date
     projectId: string
-    sessionId: string
-    userId: string
+    sessionId: string | null
+    userId: string | null
   }, ExtArgs["result"]["event"]>
   composites: {}
 }
