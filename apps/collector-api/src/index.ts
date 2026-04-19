@@ -1,6 +1,9 @@
 import { config as dotenvConfig } from "dotenv";
 import express from "express";
+import cookieParser from "cookie-parser";
 import { prisma } from "@repo/db";
+import authRoutes from "./routes/auth.routes";
+import { errorMiddleware } from "./middleware/error.middleware";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -13,6 +16,9 @@ dotenvConfig({
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
+
+app.use("/auth", authRoutes);
 
 app.get("/health", async (_req, res) => {
   const userCount = await prisma.user.count();
@@ -21,7 +27,8 @@ app.get("/health", async (_req, res) => {
 
 const port = Number(process.env.PORT ?? 3001);
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`api listening on http://localhost:${port}`);
 });
+
+app.use(errorMiddleware);
 
