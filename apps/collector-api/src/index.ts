@@ -3,7 +3,9 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes";
 import projectRoutes from "./routes/project.routes";
+import eventRoutes from "./routes/event.routes";
 import { errorMiddleware } from "./middleware/error.middleware";
+import { rateLimiter } from "./services/rate-limiter.service";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -20,10 +22,12 @@ app.use(cookieParser());
 
 app.use("/auth", authRoutes);
 app.use("/projects", projectRoutes);
+app.use("/events", eventRoutes);
 
 const port = Number(process.env.PORT ?? 3001);
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`api listening on http://localhost:${port}`);
+  await rateLimiter.connect();
 });
 
 app.use(errorMiddleware);

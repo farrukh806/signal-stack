@@ -1,5 +1,26 @@
 import { prisma } from "@repo/db";
 
+export interface ProjectContext {
+  projectId: string;
+  allowedDomains: string[];
+}
+
+export async function findProjectByApiKey(
+  apiKey: string
+): Promise<ProjectContext | null> {
+  const project = await prisma.project.findUnique({
+    where: { apiKey },
+    select: { id: true, allowedDomains: true },
+  });
+
+  if (!project) return null;
+
+  return {
+    projectId: project.id,
+    allowedDomains: project.allowedDomains,
+  };
+}
+
 function generateApiKey(): string {
   const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let key = "sk_";
