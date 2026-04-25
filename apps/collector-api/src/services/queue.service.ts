@@ -8,6 +8,8 @@ export interface EventJobPayload {
   timestamp: Date;
   ip: string;
   userAgent: string;
+  sessionId?: string;
+  userId?: string;
 }
 
 export const eventsQueue = new Queue<EventJobPayload>(
