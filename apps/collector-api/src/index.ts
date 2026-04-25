@@ -2,6 +2,7 @@ import { config as dotenvConfig } from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes";
+import projectRoutes from "./routes/project.routes";
 import { errorMiddleware } from "./middleware/error.middleware";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/auth", authRoutes);
+app.use("/projects", projectRoutes);
 
 const port = Number(process.env.PORT ?? 3001);
 app.listen(port, () => {

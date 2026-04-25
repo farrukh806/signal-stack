@@ -1084,6 +1084,7 @@ export const ProjectScalarFieldEnum = {
   apiKey: 'apiKey',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  allowedDomains: 'allowedDomains',
   accountId: 'accountId'
 } as const
 

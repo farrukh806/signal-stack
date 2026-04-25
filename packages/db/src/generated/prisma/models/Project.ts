@@ -48,6 +48,7 @@ export type ProjectCountAggregateOutputType = {
   apiKey: number
   createdAt: number
   updatedAt: number
+  allowedDomains: number
   accountId: number
   _all: number
 }
@@ -77,6 +78,7 @@ export type ProjectCountAggregateInputType = {
   apiKey?: true
   createdAt?: true
   updatedAt?: true
+  allowedDomains?: true
   accountId?: true
   _all?: true
 }
@@ -159,6 +161,7 @@ export type ProjectGroupByOutputType = {
   apiKey: string
   createdAt: Date
   updatedAt: Date
+  allowedDomains: string[]
   accountId: string
   _count: ProjectCountAggregateOutputType | null
   _min: ProjectMinAggregateOutputType | null
@@ -189,6 +192,7 @@ export type ProjectWhereInput = {
   apiKey?: Prisma.StringFilter<"Project"> | string
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  allowedDomains?: Prisma.StringNullableListFilter<"Project">
   accountId?: Prisma.StringFilter<"Project"> | string
   sessions?: Prisma.SessionListRelationFilter
   events?: Prisma.EventListRelationFilter
@@ -203,6 +207,7 @@ export type ProjectOrderByWithRelationInput = {
   apiKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  allowedDomains?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   events?: Prisma.EventOrderByRelationAggregateInput
@@ -220,6 +225,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Project"> | string
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  allowedDomains?: Prisma.StringNullableListFilter<"Project">
   accountId?: Prisma.StringFilter<"Project"> | string
   sessions?: Prisma.SessionListRelationFilter
   events?: Prisma.EventListRelationFilter
@@ -234,6 +240,7 @@ export type ProjectOrderByWithAggregationInput = {
   apiKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  allowedDomains?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   _count?: Prisma.ProjectCountOrderByAggregateInput
   _max?: Prisma.ProjectMaxOrderByAggregateInput
@@ -249,6 +256,7 @@ export type ProjectScalarWhereWithAggregatesInput = {
   apiKey?: Prisma.StringWithAggregatesFilter<"Project"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
+  allowedDomains?: Prisma.StringNullableListFilter<"Project">
   accountId?: Prisma.StringWithAggregatesFilter<"Project"> | string
 }
 
@@ -258,6 +266,7 @@ export type ProjectCreateInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   sessions?: Prisma.SessionCreateNestedManyWithoutProjectInput
   events?: Prisma.EventCreateNestedManyWithoutProjectInput
   users?: Prisma.UserCreateNestedManyWithoutProjectInput
@@ -271,6 +280,7 @@ export type ProjectUncheckedCreateInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   accountId: string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
@@ -284,6 +294,7 @@ export type ProjectUpdateInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   sessions?: Prisma.SessionUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUpdateManyWithoutProjectNestedInput
@@ -297,6 +308,7 @@ export type ProjectUncheckedUpdateInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
@@ -310,6 +322,7 @@ export type ProjectCreateManyInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   accountId: string
 }
 
@@ -319,6 +332,7 @@ export type ProjectUpdateManyMutationInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
 }
 
 export type ProjectUncheckedUpdateManyInput = {
@@ -327,6 +341,7 @@ export type ProjectUncheckedUpdateManyInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -335,12 +350,21 @@ export type ProjectScalarRelationFilter = {
   isNot?: Prisma.ProjectWhereInput
 }
 
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type ProjectCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   apiKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  allowedDomains?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
 }
 
@@ -414,6 +438,15 @@ export type ProjectUpdateOneRequiredWithoutEventsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutEventsInput, Prisma.ProjectUpdateWithoutEventsInput>, Prisma.ProjectUncheckedUpdateWithoutEventsInput>
 }
 
+export type ProjectCreateallowedDomainsInput = {
+  set: string[]
+}
+
+export type ProjectUpdateallowedDomainsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type ProjectCreateNestedOneWithoutPageViewsInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutPageViewsInput, Prisma.ProjectUncheckedCreateWithoutPageViewsInput>
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutPageViewsInput
@@ -476,6 +509,7 @@ export type ProjectCreateWithoutUsersInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   sessions?: Prisma.SessionCreateNestedManyWithoutProjectInput
   events?: Prisma.EventCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewCreateNestedManyWithoutProjectInput
@@ -488,6 +522,7 @@ export type ProjectUncheckedCreateWithoutUsersInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   accountId: string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
@@ -516,6 +551,7 @@ export type ProjectUpdateWithoutUsersInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   sessions?: Prisma.SessionUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUpdateManyWithoutProjectNestedInput
@@ -528,6 +564,7 @@ export type ProjectUncheckedUpdateWithoutUsersInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
@@ -540,6 +577,7 @@ export type ProjectCreateWithoutSessionsInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   events?: Prisma.EventCreateNestedManyWithoutProjectInput
   users?: Prisma.UserCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewCreateNestedManyWithoutProjectInput
@@ -552,6 +590,7 @@ export type ProjectUncheckedCreateWithoutSessionsInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   accountId: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutProjectInput
@@ -580,6 +619,7 @@ export type ProjectUpdateWithoutSessionsInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   events?: Prisma.EventUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUpdateManyWithoutProjectNestedInput
@@ -592,6 +632,7 @@ export type ProjectUncheckedUpdateWithoutSessionsInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutProjectNestedInput
@@ -604,6 +645,7 @@ export type ProjectCreateWithoutEventsInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   sessions?: Prisma.SessionCreateNestedManyWithoutProjectInput
   users?: Prisma.UserCreateNestedManyWithoutProjectInput
   pageViews?: Prisma.PageViewCreateNestedManyWithoutProjectInput
@@ -616,6 +658,7 @@ export type ProjectUncheckedCreateWithoutEventsInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   accountId: string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutProjectInput
@@ -644,6 +687,7 @@ export type ProjectUpdateWithoutEventsInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   sessions?: Prisma.SessionUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUpdateManyWithoutProjectNestedInput
   pageViews?: Prisma.PageViewUpdateManyWithoutProjectNestedInput
@@ -656,6 +700,7 @@ export type ProjectUncheckedUpdateWithoutEventsInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutProjectNestedInput
@@ -668,6 +713,7 @@ export type ProjectCreateWithoutPageViewsInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   sessions?: Prisma.SessionCreateNestedManyWithoutProjectInput
   events?: Prisma.EventCreateNestedManyWithoutProjectInput
   users?: Prisma.UserCreateNestedManyWithoutProjectInput
@@ -680,6 +726,7 @@ export type ProjectUncheckedCreateWithoutPageViewsInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   accountId: string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
@@ -708,6 +755,7 @@ export type ProjectUpdateWithoutPageViewsInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   sessions?: Prisma.SessionUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUpdateManyWithoutProjectNestedInput
@@ -720,6 +768,7 @@ export type ProjectUncheckedUpdateWithoutPageViewsInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
@@ -732,6 +781,7 @@ export type ProjectCreateWithoutAccountInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   sessions?: Prisma.SessionCreateNestedManyWithoutProjectInput
   events?: Prisma.EventCreateNestedManyWithoutProjectInput
   users?: Prisma.UserCreateNestedManyWithoutProjectInput
@@ -744,6 +794,7 @@ export type ProjectUncheckedCreateWithoutAccountInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutProjectInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutProjectInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutProjectInput
@@ -785,6 +836,7 @@ export type ProjectScalarWhereInput = {
   apiKey?: Prisma.StringFilter<"Project"> | string
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  allowedDomains?: Prisma.StringNullableListFilter<"Project">
   accountId?: Prisma.StringFilter<"Project"> | string
 }
 
@@ -794,6 +846,7 @@ export type ProjectCreateManyAccountInput = {
   apiKey: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  allowedDomains?: Prisma.ProjectCreateallowedDomainsInput | string[]
 }
 
 export type ProjectUpdateWithoutAccountInput = {
@@ -802,6 +855,7 @@ export type ProjectUpdateWithoutAccountInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   sessions?: Prisma.SessionUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUpdateManyWithoutProjectNestedInput
@@ -814,6 +868,7 @@ export type ProjectUncheckedUpdateWithoutAccountInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutProjectNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutProjectNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutProjectNestedInput
@@ -826,6 +881,7 @@ export type ProjectUncheckedUpdateManyWithoutAccountInput = {
   apiKey?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  allowedDomains?: Prisma.ProjectUpdateallowedDomainsInput | string[]
 }
 
 
@@ -892,6 +948,7 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   apiKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  allowedDomains?: boolean
   accountId?: boolean
   sessions?: boolean | Prisma.Project$sessionsArgs<ExtArgs>
   events?: boolean | Prisma.Project$eventsArgs<ExtArgs>
@@ -907,6 +964,7 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   apiKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  allowedDomains?: boolean
   accountId?: boolean
   account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
@@ -917,6 +975,7 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   apiKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  allowedDomains?: boolean
   accountId?: boolean
   account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
@@ -927,10 +986,11 @@ export type ProjectSelectScalar = {
   apiKey?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  allowedDomains?: boolean
   accountId?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "apiKey" | "createdAt" | "updatedAt" | "accountId", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "apiKey" | "createdAt" | "updatedAt" | "allowedDomains" | "accountId", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.Project$sessionsArgs<ExtArgs>
   events?: boolean | Prisma.Project$eventsArgs<ExtArgs>
@@ -961,6 +1021,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     apiKey: string
     createdAt: Date
     updatedAt: Date
+    allowedDomains: string[]
     accountId: string
   }, ExtArgs["result"]["project"]>
   composites: {}
@@ -1395,6 +1456,7 @@ export interface ProjectFieldRefs {
   readonly apiKey: Prisma.FieldRef<"Project", 'String'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Project", 'DateTime'>
+  readonly allowedDomains: Prisma.FieldRef<"Project", 'String[]'>
   readonly accountId: Prisma.FieldRef<"Project", 'String'>
 }
     
