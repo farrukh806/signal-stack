@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes";
 import projectRoutes from "./routes/project.routes";
 import eventRoutes from "./routes/event.routes";
+import analyticsRoutes from "./routes/analytics.routes";
 import { errorMiddleware } from "./middleware/error.middleware";
 import { rateLimiter } from "./services/rate-limiter.service";
 import path from "node:path";
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/projects", projectRoutes);
 app.use("/events", eventRoutes);
+app.use("/analytics", analyticsRoutes);
 
 const port = Number(process.env.PORT ?? 3001);
 app.listen(port, async () => {
